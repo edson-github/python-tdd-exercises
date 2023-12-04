@@ -251,22 +251,23 @@ def get_3mer_usage_chart(s):
 
 def test_get_3mer_usage_chart():
     s = 'CCGGAAGAGCTTACTTAGGAAGAA'
-    result = []
-    result.append(('AAG', 2))
-    result.append(('ACT', 1))
-    result.append(('AGA', 2))
-    result.append(('AGC', 1))
-    result.append(('AGG', 1))
-    result.append(('CCG', 1))
-    result.append(('CGG', 1))
-    result.append(('CTT', 2))
-    result.append(('GAA', 3))
-    result.append(('GAG', 1))
-    result.append(('GCT', 1))
-    result.append(('GGA', 2))
-    result.append(('TAC', 1))
-    result.append(('TAG', 1))
-    result.append(('TTA', 2))
+    result = [
+        ('AAG', 2),
+        ('ACT', 1),
+        ('AGA', 2),
+        ('AGC', 1),
+        ('AGG', 1),
+        ('CCG', 1),
+        ('CGG', 1),
+        ('CTT', 2),
+        ('GAA', 3),
+        ('GAG', 1),
+        ('GCT', 1),
+        ('GGA', 2),
+        ('TAC', 1),
+        ('TAG', 1),
+        ('TTA', 2),
+    ]
     assert get_3mer_usage_chart(s) == result
 
 
@@ -384,9 +385,7 @@ def pythagorean_triples(n):
     # loop over all a < b < c <= n
     for c in range(1, n + 1):
         for b in range(1, c):
-            for a in range(1, b):
-                if a*a + b*b == c*c:
-                    l.append((a, b, c))
+            l.extend((a, b, c) for a in range(1, b) if a*a + b*b == c*c)
     return l
 
 
